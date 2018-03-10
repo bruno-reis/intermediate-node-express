@@ -8,6 +8,7 @@ router.post('/login', (req, res, next) => {
         } else {
           return res.redirect('/users/login')
         }
+
       })
     })
     .catch(err => {
