@@ -1,0 +1,10 @@
+extends base.pug
+
+block content
+  h1 Edit a user!
+  form(action=`/users/${user.id}?_method=PATCH`, method="POST")
+    input(type="text", name="username", value=`${user.username}`)
+    input(type="password", name="password", value=`${user.password}`)
+    input(type="submit", value="Edit a user!")
+  form(action=`/users/${user.id}?_method=DELETE`, method="POST")
+    input(type="submit", value="X")

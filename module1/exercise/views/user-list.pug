@@ -1,0 +1,9 @@
+extend base.pug
+
+block content
+  h1 See all the Users!
+  a(href="/users/new") Create a new User
+  ul
+    each user in users
+      li #{user.username}
+        a(href=`/users/${user.id}/edit`)  Edit
