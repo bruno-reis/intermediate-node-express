@@ -20,16 +20,21 @@ let userSchema = new mongoose.Schema({
   }
 })
 
-userSchema.pre('save', next => {
-  if (!this.isModified('password')) return next()
+userSchema.pre('save', function(next) {
+  const user = this
+
+  if (!user.isModified('password')) {
+    return next()
+  }
 
   return bcrypt
-    .hash(this.password, saltRounds)
+    .hash(user.password, saltRounds)
     .then( hashedPassword => {
-      this.password = hashedPassword
+      user.password = hashedPassword
       return next()
     })
     .catch(err => {
+      console.log(err)
       return next(err)
     })
 })
